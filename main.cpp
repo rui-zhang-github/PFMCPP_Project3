@@ -65,30 +65,18 @@ Part1 will be broken up into 5 separate steps
 */
 
 /*
-Thing 10)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
+Thing 10) has been moved to after Thing 4)
  */
-
-
 
 
 /*
 Thing 1) Hotel
 5 properties:
-    1) total number of guest rooms
-    2) number of booked rooms
-    3) room rate per night
-    4) number of cafes
-    5) number of elevators
+    1) total number of guest rooms (int)
+    2) number of booked rooms (int)
+    3) room rate per night (float)
+    4) number of cafes (int)
+    5) number of elevators (int)
 3 things it can do:
     1) store lugages
     2) host customers
@@ -98,11 +86,11 @@ Thing 1) Hotel
 /*
 Thing 2) Laptop
 5 properties:
-    1) type of CPU 
-    2) size of RAM
-    3) size of screen
-    4) type of operating system
-    5) size of disk space
+    1) type of CPU (std::string)
+    2) size of RAM (int)
+    3) size of screen (float)
+    4) type of operating system (std::string)
+    5) size of disk space (int)
 3 things it can do:
     1) display images
     2) play audio
@@ -112,11 +100,11 @@ Thing 2) Laptop
 /*
 Thing 3) Dish washer
 5 properties:
-    1) cabin volume
-    2) number of cycles
-    3) number of watts consumed per hour
-    4) size of the machine
-    5) number of racks
+    1) cabin volume (double)
+    2) number of cycles (int)
+    3) number of watts consumed per hour (double)
+    4) size of the machine (float)
+    5) number of racks (int)
 3 things it can do:
     1) clean dishes
     2) consume electricity
@@ -126,17 +114,30 @@ Thing 3) Dish washer
 /*
 Thing 4) Passenger plane
 5 properties:
-    1) number of seats
-    2) number of bathrooms
-    3) number of doors
-    4) size of the plane
-    5) number of engines
+    1) number of seats (int)
+    2) number of bathrooms (int)
+    3) number of doors (int)
+    4) size of the plane (double)
+    5) number of engines (int)
 3 things it can do:
     1) carry passengers
     2) provide multi-media entertainment
     3) fly above the clouds 
  */
 
+/*
+Thing 10) Human
+5 properties:
+    1) Head
+    2) Neck
+    3) Body
+    4) Arms
+    5) Legs
+3 things it can do:
+    1) Speak
+    2) Run
+    3) Lift things
+ */
 
 
 /*
