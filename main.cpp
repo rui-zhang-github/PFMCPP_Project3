@@ -57,59 +57,59 @@ Thing: Car Wash
  */
 
 /*
-Thing 1)
+Thing 1) Hotel
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) total number of guest rooms
+    2) number of booked rooms
+    3) room rate per night
+    4) number of cafes
+    5) number of elevators
 3 things it can do:
-    1)
-    2)
-    3)
+    1) store lugages
+    2) host customers
+    3) provide laundry services
  */
 
 /*
-Thing 2)
+Thing 2) Laptop
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) type of CPU 
+    2) size of RAM
+    3) size of screen
+    4) type of operating system
+    5) size of disk space
 3 things it can do:
-    1)
-    2)
-    3)
+    1) display images
+    2) play audio
+    3) store data
  */
 
 /*
-Thing 3)
+Thing 3) Dish washer
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) cabin volume
+    2) number of cycles
+    3) number of watts consumed per hour
+    4) size of the machine
+    5) number of racks
 3 things it can do:
-    1)
-    2)
-    3)
+    1) clean dishes
+    2) consume electricity
+    3) make noise when turned on
  */
 
 /*
-Thing 4)
+Thing 4) Passenger plane
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of seats
+    2) number of bathrooms
+    3) number of doors
+    4) size of the plane
+    5) number of engines
 3 things it can do:
-    1)
-    2)
-    3)
+    1) carry passengers
+    2) provide multi-media entertainment
+    3) fly above the clouds 
  */
 
 
