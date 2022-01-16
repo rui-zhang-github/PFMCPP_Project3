@@ -198,16 +198,16 @@ Thing 8) arms
 
 /*
 Thing 9)
-5 properties: legs
-    1) arm length in cm (float)
-    2) number of muscles (int)
-    3) number of joints (int)
-    4) number of bones (int)
-    5) length of blood vessels in cm (float)
+5 properties: feet
+    1) foot length in cm (float)
+    2) number of toes (int)
+    3) number of ankles (int)
+    4) area of skins in square cm (float)
+    5) number of heels
 3 things it can do:
-    1) rotate
-    2) stretch
-    3) stride
+    1) stretch 
+    2) kick
+    3) tiptoe
  */
 
 /*
@@ -217,7 +217,7 @@ Thing 10) Human
     2) Neck
     3) Body
     4) Arms
-    5) Legs
+    5) Feet
 3 things it can do:
     1) Speak
     2) Run
