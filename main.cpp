@@ -81,78 +81,8 @@ Part1 will be broken up into 5 separate steps
 */
 
 /*
-Thing 5)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
+Thing 5-9 have been moved to between Thing 4 and 10.
  */
-
-/*
-Thing 6)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 7)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 8)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 9)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-
-
-
 
 /*
 Thing 1) Hotel
@@ -208,6 +138,76 @@ Thing 4) Passenger plane
     1) carry passengers
     2) provide multi-media entertainment
     3) fly above the clouds 
+ */
+
+/*
+Thing 5) Head
+5 properties:
+    1) head circumference in cm (float)
+    2) number of eyes (int)
+    3) number of ears (int)
+    4) number of noses (int)
+    5) number of mounths (int)
+3 things it can do:
+    1) think
+    2) hear
+    3) smell
+ */
+
+/*
+Thing 6) Neck
+5 properties:
+    1) number lymph nodes (int)
+    2) number of thyroids (int)
+    3) number of vocal folds (int)
+    4) number of tracheae (int)
+    5) neck circumference in cm (float)
+3 things it can do:
+    1) support the head
+    2) deliver air from nose to lungs
+    3) deliver food from mouth to stomach
+ */
+
+/*
+Thing 7) body 
+5 properties:
+    1) number of hearts (int)
+    2) number of lungs (int)
+    3) number of stomachs (int)
+    4) number of kidneys (int)
+    5) waist circumference in cm (float)
+3 things it can do:
+    1) exchange gas
+    2) digest food
+    3) generate urine
+ */
+
+/*
+Thing 8) arms
+5 properties:
+    1) arm length in cm (float)
+    2) number of muscles (int)
+    3) number of joints (int)
+    4) number of bones (int)
+    5) length of blood vessels in cm (float)
+3 things it can do:
+    1) lift things
+    2) rotate
+    3) stretch
+ */
+
+/*
+Thing 9)
+5 properties: legs
+    1) arm length in cm (float)
+    2) number of muscles (int)
+    3) number of joints (int)
+    4) number of bones (int)
+    5) length of blood vessels in cm (float)
+3 things it can do:
+    1) rotate
+    2) stretch
+    3) stride
  */
 
 /*
