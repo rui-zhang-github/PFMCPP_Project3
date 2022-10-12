@@ -53,51 +53,51 @@ Sub Object 1: Steering Wheel
     Name 4 things you'll find on the:    Steering Wheel
         1) paddle shifters
         2) 'cruise control' controls
-        3) horn button
-        4) Audio System volume control
+        3) 
+        4) 
     Name 2 things you can do with the:   Steering Wheel
         1) adjust cruise control settings.
-        2) sound horn
+        2)
         
 Sub Object 2: Instrument Cluster
     Name 4 things you'll find on the:   Instrument Cluster
-        1) speedometer
-        2) tachometer
-        3) turning light indicator
-        4) Small LCD Display
+        1)
+        2)
+        3)
+        4)
     Name 3 things you can do with the:   Instrument Cluster
-        1) Check current speed
-        2) Check current gear
-        3) Check current tire pressure
+        1)
+        2)
+        3)
     
 Sub Object 3: Environment Controls
     Name 3 things you'll find on the:    Environment Controls
-        1) Air conditioning temperature control
-        2) Air flow control
-        3) Recirculation button
+        1)
+        2)
+        3)
     Name 3 things you can do with the:   Environment Controls
-        1) adjust temperature of air conditioning
-        2) adjust air flow
-        3) choose air recirculation mode
+        1)
+        2)
+        3)
 
 Sub Object 4: Infotainment System
     Name 3 things you'll find on the:    Infotainment System
-        1) CD player
-        2) radio tuner
-        3) phone dial pad
+        1)
+        2)
+        3)
     Name 3 things you can do with the:   Infotainment System
-        1) play music with CD player
-        2) play music with radio
-        3) make phone calls
+        1)
+        2)
+        3)
 
 Sub Object 5: Seat 
     Name 3 things you'll find on the:    Seat
-        1) headrest
-        2) leather
-        3) seat tracks
+        1)
+        2)
+        3)
     Name 2 things you can do with the:   Seat
-        1) adjust seat position 
-        2) adjust seat height
+        1)
+        2)
 */
 
 /*
@@ -154,8 +154,8 @@ Part 1b Assignment: 1 Step
         'int float double bool char std::string'.
 */
 
-/* ALL 4 things have been moved to Part 1d
-Thing 1) 
+/*
+Thing 1)
 5 properties:
     1)
     2)
@@ -279,7 +279,7 @@ Define an object that is made of 5 sub-objects.
     you'll define these 5 sub-objects in Part 1d.
 */
 
-/* Thing 10) has been moved to Part 1d
+/*
 Thing 10)
 5 properties:
     1)
@@ -384,7 +384,7 @@ each property for UDTs 5 - 9.
 Step 3 is written below UDTs 5 - 9
 */
 
-/* Thing 5) - 9) have been moved to Part 1d
+/*
 Thing 5)
 5 properties:
     1)
@@ -472,145 +472,6 @@ After you have MOVED your 10 UDTs, send me a DM with your pull request link.
 I will review the pseudo-code that you have written.
 */
 
-/*
-Thing 1) Hotel
-5 properties:
-    1) total number of guest rooms (int)
-    2) number of booked rooms (int)
-    3) room rate per night (float)
-    4) number of cafes (int)
-    5) number of elevators (int)
-3 things it can do:
-    1) store lugages
-    2) host customers
-    3) provide laundry services
- */
-
-/*
-Thing 2) Laptop
-5 properties:
-    1) type of CPU (std::string)
-    2) size of RAM (int)
-    3) size of screen (float)
-    4) type of operating system (std::string)
-    5) size of disk space (int)
-3 things it can do:
-    1) display images
-    2) play audio
-    3) store data
- */
-
-/*
-Thing 3) Dish washer
-5 properties:
-    1) cabin volume (double)
-    2) number of cycles (int)
-    3) number of watts consumed per hour (double)
-    4) size of the machine (float)
-    5) number of racks (int)
-3 things it can do:
-    1) clean dishes
-    2) consume electricity
-    3) make noise when turned on
- */
-
-/*
-Thing 4) Passenger plane
-5 properties:
-    1) number of seats (int)
-    2) number of bathrooms (int)
-    3) number of doors (int)
-    4) size of the plane (double)
-    5) number of engines (int)
-3 things it can do:
-    1) carry passengers
-    2) provide multi-media entertainment
-    3) fly above the clouds 
- */
-
-/*
-Thing 5) Head
-5 properties:
-    1) head circumference in cm (float)
-    2) number of eyes (int)
-    3) number of ears (int)
-    4) number of noses (int)
-    5) number of mounths (int)
-3 things it can do:
-    1) think
-    2) hear
-    3) smell
- */
-
-/*
-Thing 6) Neck
-5 properties:
-    1) number lymph nodes (int)
-    2) number of thyroids (int)
-    3) number of vocal folds (int)
-    4) number of tracheae (int)
-    5) neck circumference in cm (float)
-3 things it can do:
-    1) support the head
-    2) deliver air from nose to lungs
-    3) deliver food from mouth to stomach
- */
-
-/*
-Thing 7) body 
-5 properties:
-    1) number of hearts (int)
-    2) number of lungs (int)
-    3) number of stomachs (int)
-    4) number of kidneys (int)
-    5) waist circumference in cm (float)
-3 things it can do:
-    1) exchange gas
-    2) digest food
-    3) generate urine
- */
-
-/*
-Thing 8) arms
-5 properties:
-    1) arm length in cm (float)
-    2) number of muscles (int)
-    3) number of joints (int)
-    4) number of bones (int)
-    5) length of blood vessels in cm (float)
-3 things it can do:
-    1) lift things
-    2) rotate
-    3) stretch
- */
-
-/*
-Thing 9)
-5 properties: feet
-    1) foot length in cm (float)
-    2) number of toes (int)
-    3) number of ankles (int)
-    4) area of skins in square cm (float)
-    5) number of heels
-3 things it can do:
-    1) stretch 
-    2) kick
-    3) tiptoe
- */
-
-/*
-Thing 10) Human
-5 properties:
-    1) Head
-    2) Neck
-    3) Body
-    4) Arms
-    5) Feet
-3 things it can do:
-    1) Speak
-    2) Run
-    3) Lift things
- */
 
 
 
