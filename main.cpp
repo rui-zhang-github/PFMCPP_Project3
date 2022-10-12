@@ -200,6 +200,52 @@ Thing 1) Hotel
     3) provide laundry services
  */
 
+struct Hotel
+{
+    // 5 properties:
+    // 1) total number of guest rooms (int)
+    int totalNumberOfGuestRooms = 30;
+    // 2) number of booked rooms (int)
+    int numberOfBookedRooms = 0;
+    // 3) room rate per night (float)
+    float roomRatePerNight = 123.0f;
+    // 4) number of cafes (int)
+    int numberOfCafes = 1;
+    // 5) number of elevators (int)
+    int numberOfElevators = 2;
+
+    // 3 things it can do:
+    // 1) store lugages
+    int storeLugages(int numberOfLugages = 1); // returns the total number of lugages in the storage room
+    // 2) host customers
+    int hostCustomers(int numberOfCustomers = 1); // returns the total number of Customers staying in the hotel tonight
+    // 3) provide laundry services
+    void providLaundryServices(int numberOfClothes = 1);
+
+    struct FrontDesk
+    {
+        // 5 properties:
+        // 1) number of counters (int)
+        int numberOfCounters = 1;
+        // 2) number of computers (int)
+        int numberOfComputers = 1;
+        // 3) number of printers (int)
+        int numberOfPrinters = 1;
+        // 4) number of telephones (int)
+        int numberOfTelephones = 1;
+        // 5) number of receptionists (int)
+        int numberOfReceptionists = 1;
+
+        // 3 things it can do:
+        // 1) Check customers in
+        void checkCustomersIn(int numberOfCustomers = 1);
+        // 2) take service requests
+        void takeServiceRequests(std::string typeOfServices);
+        // 3) print bills
+        void printBills(int numberOfBillsToPrint = 1);                
+    };
+};
+
 /*
 Thing 2) Laptop
 5 properties:
@@ -213,6 +259,52 @@ Thing 2) Laptop
     2) play audio
     3) store data
  */
+
+struct Laptop
+{
+    // 5 properties:
+    // 1) type of CPU (std::string)
+    std::string typeOfCPU = "Quad-Core Intel Core i5";
+    // 2) size of RAM (int)
+    int sizeOfRamInGb = 8;
+    // 3) size of screen (float)
+    float sizeOfScreenInInch = 13.3f;
+    // 4) type of operating system (std::string)
+    std::string typeOfOperatingSystem = "Linux";
+    // 5) size of disk space (int)
+    int sizeOfDiskSpaceInGb = 256;
+
+    //3 things it can do:
+    // 1) display images
+    int displayImage(std::string fileName); // return number of different hex color codes displayed
+    // 2) play audio
+    void playAudio(std::string fileName);
+    // 3) store data
+    void storeData(std::string fileName);
+
+    struct Display
+    {
+        // 5 properties:
+        // 1) electric power consumed per year in Watts (float)
+        float electricPowerConsumedPerYearInWatts = 1.f;
+        // 2) number of pixles (int)
+        int numberOfPixles = 1;
+        // 3) color profile (std::string)
+        std::string colorProfile = "Adobe RGB";
+        // 4) length in cm (float)
+        float lengthInCm = 1.0f;
+        // 4) Width in cm (float)
+        float WidthInCm = 1.0f;
+
+        // 3 things it can do:
+        // 1) display color
+        void displayColor(std::string hexColorCode = "FF5733");
+        // 2) adjust brightness
+        void adjustBrightness(float brightnessInPercentage = 50);
+        // 3) adjust clarity
+        void adjustClarity(float clarityInPercentage = 100);
+    };
+};
 
 /*
 Thing 3) Dish washer
@@ -228,6 +320,29 @@ Thing 3) Dish washer
     3) make noise when turned on
  */
 
+struct DishWasher
+{
+    // 5 properties:
+    // 1) cabin volume (double)
+    double cabinVolumeInCubicMeter = 1.0000;
+    // 2) number of cycles (int)
+    int numberOfCycles = 5;
+    // 3) number of watts consumed per hour (double)
+    double numberOfWattsConsumedPerHour = 1.0000;
+    // 4) size of the machine (float)
+    float sizeOfMachineInMeter = 1.0f;
+    // 5) number of racks (int)
+    int numberOfRacks = 2;
+
+    // 3 things it can do:
+    // 1) clean dishes
+    void cleanDishes(int numberOfDishes, double amountOfDetergentInLitter);
+    // 2) consume electricity
+    void consumeElectricity(double numberOfHoursWashwerHasBeenOn, double numberOfWattsConsumedPerHour);
+    // 3) make noise when turned on
+    void makeNoiseWhenTurnedOn(bool isOn = true);
+};
+
 /*
 Thing 4) Passenger plane
 5 properties:
@@ -241,6 +356,30 @@ Thing 4) Passenger plane
     2) provide multi-media entertainment
     3) fly above the clouds 
  */
+
+struct PassengerPlane
+{
+    // 5 properties:
+    // 1) number of seats (int)
+    int numberOfSeats = 10;
+    // 2) number of bathrooms (int)
+    int nubmerOfBathrooms = 2;
+    // 3) number of doors (int)
+    int numberOfDoors = 6;
+    // 4) size of the plane (double)
+    double sizeOfThePlane = 100;
+    // 5) number of engines (int)
+    int numberOfEngines = 4;
+
+    // 3 things it can do:
+    // 1) carry passengers
+    void carryPassengers(int numberOfPassengers);
+    // 2) provide multi-media entertainment
+    void provideMultimediaEntertainment(std::string mediaType);
+    // 3) fly above the clouds 
+    void flyAboveTheClouds(std::string from, std::string to);
+};
+
 
 /*
 Thing 5) Head
@@ -256,6 +395,29 @@ Thing 5) Head
     3) smell
  */
 
+struct Head
+{
+    // 5 properties:
+    // 1) head circumference in cm (float)
+    float headCircumferenceInCm = 30.0f;
+    // 2) number of eyes (int)
+    int numberOfEyes = 2;
+    // 3) number of ears (int)
+    int numberOfEars = 2;
+    // 4) number of noses (int)
+    int numberOfNoses = 1;
+    // 5) number of mounths (int)
+    int numberOfMouths = 1;
+
+    // 3 things it can do:
+    // 1) think
+    void think(std::string topic);
+    // 2) hear
+    void hear(float sineWaveFrequency = 1.0f, float sineWaveAmplitude = 1.0f, float soundDecibels = 1.0f);
+    // 3) smell
+    void smell(int numberOfAirMolecules = 10000);
+};
+
 /*
 Thing 6) Neck
 5 properties:
@@ -269,6 +431,29 @@ Thing 6) Neck
     2) deliver air from nose to lungs
     3) deliver food from mouth to stomach
  */
+
+struct Neck
+{
+    // 5 properties:
+    // 1) number lymph nodes (int)
+    int numberOfLymphNodes = 10;
+    // 2) number of thyroids (int)
+    int numberOfThyroids = 1;
+    // 3) number of vocal folds (int)
+    int numberOfVocalFolds = 1;
+    // 4) number of tracheae (int)
+    int numberOfTracheae = 1;
+    // 5) neck circumference in cm (float)
+    float neckCircumferenceInCm = 20.0f;
+
+    // 3 things it can do:
+    // 1) support the head
+    void supportTheHead(double weightOfHeadInLb = 1.0000);
+    // 2) deliver air from nose to lungs
+    void deliverAirFromNoseToLungs(double volumeOfOxygen = 1.0000, double lengthOfTracheaeInMeter = 1.00);
+    // 3) deliver food from mouth to stomach   
+    void deliverFoodFromMouthToStomach(double volumeOfFood= 1.0000, double lengthOfEsophagusInMeter = 1.00);
+};
 
 /*
 Thing 7) body 
@@ -284,6 +469,29 @@ Thing 7) body
     3) generate urine
  */
 
+struct Body
+{
+    // 5 properties:
+    // 1) number of hearts (int)
+    int numberOfHearts = 1;
+    // 2) number of lungs (int)
+    int numberOfLungs = 4;
+    // 3) number of stomachs (int)
+    int numberOfStomachs = 1;
+    // 4) number of kidneys (int)
+    int numberOfKidneys = 2;
+    // 5) waist circumference in cm (float)
+    float waistCircumferenceInCm = 70.0f;
+
+    // 3 things it can do:
+    // 1) exchange gas
+    void exchangeGas(double volumeOfOxygen = 1.0000, double volumeOfCarbonDioxide = 1.0000);
+    // 2) digest food
+    void digestFood(double volumeOfFood = 1.000);
+    // 3) generate urine  
+    void generateUrine(double amountOfWaterConsumedInLitter = 1.000);
+};
+
 /*
 Thing 8) arms
 5 properties:
@@ -298,9 +506,32 @@ Thing 8) arms
     3) stretch
  */
 
+struct Arm
+{
+    // 5 properties:
+    // 1) arm length in cm (float)
+    float armLengthInCm = 50.000;
+    // 2) number of muscles (int)
+    int numberOfMuscles = 100;
+    // 3) number of joints (int)
+    int numberOfJoints = 50;
+    // 4) number of bones (int)
+    int numberOfBones = 30;
+    // 5) length of blood vessels in cm (float)
+    float lengthOfBloodVesselsInCm = 200.0f;
+
+    // 3 things it can do:
+    // 1) lift things
+    void liftThings(float weightOfTheThingInLb = 10.0f, float sizeOfTheThingInCubicMeter = 1.0f);
+    // 2) rotate
+    void rotate(float degreeOfRotation = 45);
+    // 3) stretch 
+    void stretch(int numberOfMusclesMoved = 50);
+};
+
 /*
 Thing 9)
-5 properties: feet
+5 properties: foot
     1) foot length in cm (float)
     2) number of toes (int)
     3) number of ankles (int)
@@ -312,21 +543,67 @@ Thing 9)
     3) tiptoe
  */
 
+struct Foot
+{
+    // 5 properties:
+    // 1) foot length in cm (float)
+    float footLengthInCm = 15.000;
+    // 2) number of toes (int)
+    int numberOfToes = 5;
+    // 3) number of ankles (int)
+    int numberOfAnkles = 1;
+    // 4) area of skins in square cm (float)
+    float areaOfSkinsInSquareCm = 100;
+    // 5) number of heels (int)
+    int numberOfHeels = 1;
+
+    // 3 things it can do:
+    // 1) stretch
+    void stretch(int numberOfMusclesMoved = 20);
+    // 2) kick
+    void kick(float forceInNewton = 45);
+    // 3) tiptoe 
+    void tiptoe(int numberOfMusclesMoved = 10);
+};
+
 /*
 Thing 10) Human
 5 properties:
     1) Head
     2) Neck
     3) Body
-    4) Arms
-    5) Feet
+    4) Arm
+    5) Foot
 3 things it can do:
     1) Speak
     2) Run
-    3) Lift things
+    3) Jump
  */
 
+struct Human
+{
+    // 5 properties:
+    // 1) Head
+    Head head;
+    // 2) Neck
+    Neck neck;
+    // 3) Body
+    Body body;
+    // 4) Arm
+    Arm leftArm;
+    Arm rightArm;
+    // 5) Foot
+    Foot leftFoot;
+    Foot rightFoot;
 
+    // 3 things it can do:
+    // 1) Speak
+    void speak(int numberOfWords = 1);
+    // 2) Run
+    void run(double distanceInMeter = 1000.00);
+    // 3) jump
+    void jump(int numberOfFootUsed = 2);
+};
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
