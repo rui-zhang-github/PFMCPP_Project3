@@ -108,7 +108,44 @@ struct CarWash
     You'll need to insert the Person struct from the video in the space below.
  */
 
+struct Person
+{
+    int age;
+    int hair;
+    float hairLength;
+    float gpa;
+    unsigned int satScore;
+    int distanceTraveled;
 
+    void run(int howFast, bool startWithLeftFoot);
+
+    struct Foot
+    {
+        int stepSize()
+        {
+            return {};
+        }
+        void stepForward(){}
+    };
+
+    Foot leftFoot;
+    Foot rightFoot;
+};
+
+void Person::run(int howFast, bool startWithLeftFoot)
+{
+    if(startWithLeftFoot == true)
+    {
+        leftFoot.stepForward();
+        rightFoot.stepForward();
+    }
+    else
+    {
+        rightFoot.stepForward();
+        leftFoot.stepForward();
+    }
+    distanceTraveled += (leftFoot.stepSize() + rightFoot.stepSize()) * howFast;
+}
 
 
 
@@ -128,424 +165,396 @@ struct CarWash
  */
 
 
-/*
-Thing 1) Hotel
-5 properties:
-    1) total number of guest rooms (int)
-    2) number of booked rooms (int)
-    3) room rate per night (float)
-    4) number of cafes (int)
-    5) number of elevators (int)
-3 things it can do:
-    1) store lugages
-    2) host customers
-    3) provide laundry services
- */
-
 struct Hotel
 {
-    // 5 properties:
-    // 1) total number of guest rooms (int)
     int totalNumberOfGuestRooms = 30;
-    // 2) number of booked rooms (int)
     int numberOfBookedRooms = 0;
-    // 3) room rate per night (float)
     float roomRatePerNight = 123.0f;
-    // 4) number of cafes (int)
     int numberOfCafes = 1;
-    // 5) number of elevators (int)
     int numberOfElevators = 2;
+    int totalNumberOfCustomersStayingTonight = 0;
+    int totalNumberOfLugages = 0;
 
-    // 3 things it can do:
-    // 1) store lugages
-    int storeLugages(int numberOfLugages = 1); // returns the total number of lugages in the storage room
-    // 2) host customers
-    int hostCustomers(int numberOfCustomers = 1); // returns the total number of Customers staying in the hotel tonight
-    // 3) provide laundry services
+    int storeLugages(int numberOfLugages = 1); 
+    int hostCustomers(int numberOfCustomers = 1); 
     void providLaundryServices(int numberOfClothes = 1);
 
     struct FrontDesk
     {
-        // 5 properties:
-        // 1) number of counters (int)
         int numberOfCounters = 1;
-        // 2) number of computers (int)
         int numberOfComputers = 1;
-        // 3) number of printers (int)
         int numberOfPrinters = 1;
-        // 4) number of telephones (int)
         int numberOfTelephones = 1;
-        // 5) number of receptionists (int)
         int numberOfReceptionists = 1;
 
-        // 3 things it can do:
-        // 1) Check customers in
         void checkCustomersIn(int numberOfCustomers = 1);
-        // 2) take service requests
         void takeServiceRequests(std::string typeOfServices);
-        // 3) print bills
         void printBills(int numberOfBillsToPrint = 1);                
     };
 };
 
-/*
-Thing 2) Laptop
-5 properties:
-    1) type of CPU (std::string)
-    2) size of RAM (int)
-    3) size of screen (float)
-    4) type of operating system (std::string)
-    5) size of disk space (int)
-3 things it can do:
-    1) display images
-    2) play audio
-    3) store data
- */
+int Hotel::storeLugages(int numberOfLugages)
+{
+    totalNumberOfLugages += numberOfLugages;
+    return totalNumberOfLugages;
+}
+
+int Hotel::hostCustomers(int numberOfCustomers)
+{
+    totalNumberOfCustomersStayingTonight += numberOfCustomers;
+    return totalNumberOfCustomersStayingTonight;
+}
+
+void Hotel::providLaundryServices(int numberOfClothes)
+{
+    if(numberOfClothes < 2)
+    {
+        std::cout << numberOfClothes << " has been taken for Laundry Service.";
+    }
+    else 
+    {
+        std::cout << numberOfClothes << " have been taken for Laundry Service.";
+    }
+}
+
+void Hotel::FrontDesk::checkCustomersIn(int numberOfCustomers)
+{
+    if(numberOfCustomers < 2)
+    {
+        std::cout << "Checking in " << numberOfCustomers << " customer.";
+    }
+    else 
+    {
+        std::cout << "Checking in " << numberOfCustomers << " customers.";
+    }  
+}
+
+void Hotel::FrontDesk::takeServiceRequests(std::string typeOfServices)
+{
+    std::cout << typeOfServices << " service request has been taken."; 
+}
+
+void Hotel::FrontDesk::printBills(int numberOfBillsToPrint)
+{
+    if(numberOfBillsToPrint < 2)
+    {
+        std::cout << numberOfBillsToPrint << " has been printed.";
+    }
+    else 
+    {
+        std::cout << numberOfBillsToPrint << " have been printed.";
+    }
+}
 
 struct Laptop
 {
-    // 5 properties:
-    // 1) type of CPU (std::string)
     std::string typeOfCPU = "Quad-Core Intel Core i5";
-    // 2) size of RAM (int)
     int sizeOfRamInGb = 8;
-    // 3) size of screen (float)
     float sizeOfScreenInInch = 13.3f;
-    // 4) type of operating system (std::string)
     std::string typeOfOperatingSystem = "Linux";
-    // 5) size of disk space (int)
     int sizeOfDiskSpaceInGb = 256;
 
-    //3 things it can do:
-    // 1) display images
-    int displayImage(std::string fileName); // return number of different hex color codes displayed
-    // 2) play audio
+    int displayImage(std::string fileName); 
     void playAudio(std::string fileName);
-    // 3) store data
     void storeData(std::string fileName);
 
     struct Display
     {
-        // 5 properties:
-        // 1) electric power consumed per year in Watts (float)
         float electricPowerConsumedPerYearInWatts = 1.f;
-        // 2) number of pixles (int)
         int numberOfPixles = 1;
-        // 3) color profile (std::string)
         std::string colorProfile = "Adobe RGB";
-        // 4) length in cm (float)
         float lengthInCm = 1.0f;
-        // 4) Width in cm (float)
         float WidthInCm = 1.0f;
 
-        // 3 things it can do:
-        // 1) display color
         void displayColor(std::string hexColorCode = "FF5733");
-        // 2) adjust brightness
         void adjustBrightness(float brightnessInPercentage = 50);
-        // 3) adjust clarity
         void adjustClarity(float clarityInPercentage = 100);
     };
 };
 
-/*
-Thing 3) Dish washer
-5 properties:
-    1) cabin volume (double)
-    2) number of cycles (int)
-    3) number of watts consumed per hour (double)
-    4) size of the machine (float)
-    5) number of racks (int)
-3 things it can do:
-    1) clean dishes
-    2) consume electricity
-    3) make noise when turned on
- */
+int Laptop::displayImage(std::string fileName)
+{
+    std::cout << "Now displaying: " << fileName;
+    int numberOfDifferentHexColorCodes = 0;
+    return numberOfDifferentHexColorCodes;
+}
+
+void Laptop::playAudio(std::string fileName)
+{
+    std::cout << "Now playing: " << fileName;
+}
+
+void Laptop::storeData(std::string fileName)
+{
+    std::cout << fileName << " has been stored the hard drive.";
+}
+
+void Laptop::Display::displayColor(std::string hexColorCode)
+{
+    std::cout << "This is the color of hex code " << hexColorCode;
+}
+
+void Laptop::Display::adjustBrightness(float brightnessInPercentage)
+{
+    std::cout << "Current brightness is " << brightnessInPercentage << "%.";
+}
+
+void Laptop::Display::adjustClarity(float clarityInPercentage)
+{
+    std::cout << "Current clarity is " << clarityInPercentage << "%.";
+}
 
 struct DishWasher
 {
-    // 5 properties:
-    // 1) cabin volume (double)
     double cabinVolumeInCubicMeter = 1.0000;
-    // 2) number of cycles (int)
     int numberOfCycles = 5;
-    // 3) number of watts consumed per hour (double)
     double numberOfWattsConsumedPerHour = 1.0000;
-    // 4) size of the machine (float)
     float sizeOfMachineInMeter = 1.0f;
-    // 5) number of racks (int)
     int numberOfRacks = 2;
 
-    // 3 things it can do:
-    // 1) clean dishes
     void cleanDishes(int numberOfDishes, double amountOfDetergentInLitter);
-    // 2) consume electricity
     void consumeElectricity(double numberOfHoursWashwerHasBeenOn, double numberOfWattsConsumedPerHour);
-    // 3) make noise when turned on
     void makeNoiseWhenTurnedOn(bool isOn = true);
 };
 
-/*
-Thing 4) Passenger plane
-5 properties:
-    1) number of seats (int)
-    2) number of bathrooms (int)
-    3) number of doors (int)
-    4) size of the plane (double)
-    5) number of engines (int)
-3 things it can do:
-    1) carry passengers
-    2) provide multi-media entertainment
-    3) fly above the clouds 
- */
+void DishWasher::cleanDishes(int numberOfDishes, double amountOfDetergentInLitter)
+{
+    if(numberOfDishes < 2)
+    {
+        std::cout << numberOfDishes << "has been washed with" << amountOfDetergentInLitter << " Litter of detergent.";
+    }
+    else 
+    {
+        std::cout << numberOfDishes << "have been washed with" << amountOfDetergentInLitter << " Litter of detergent.";
+    }
+
+    if(amountOfDetergentInLitter / numberOfDishes < 0.00000001)
+    {
+        std::cout <<  "Dishes might not be clean due to too small amount of detergent.";
+    }
+}
+
+void DishWasher::consumeElectricity(double numberOfHoursTheWashwerHasBeenOn, double numberOfWattsConsumedPerHourOnAvg)
+{
+    std::cout << "The dishwasher has already consumed " << numberOfHoursTheWashwerHasBeenOn * numberOfWattsConsumedPerHourOnAvg << " Watts of electricity.";
+}
+
+void DishWasher::makeNoiseWhenTurnedOn(bool isOn)
+{
+    if(isOn)
+    {
+        std::cout << "The machine is noisy.";
+    }
+}
 
 struct PassengerPlane
 {
-    // 5 properties:
-    // 1) number of seats (int)
     int numberOfSeats = 10;
-    // 2) number of bathrooms (int)
     int nubmerOfBathrooms = 2;
-    // 3) number of doors (int)
     int numberOfDoors = 6;
-    // 4) size of the plane (double)
     double sizeOfThePlane = 100;
-    // 5) number of engines (int)
     int numberOfEngines = 4;
 
-    // 3 things it can do:
-    // 1) carry passengers
     void carryPassengers(int numberOfPassengers);
-    // 2) provide multi-media entertainment
     void provideMultimediaEntertainment(std::string mediaType);
-    // 3) fly above the clouds 
     void flyAboveTheClouds(std::string from, std::string to);
 };
 
+void PassengerPlane::carryPassengers(int numberOfPassengers)
+{
+    std::cout << "There are " << numberOfPassengers << " passengers on the plane.";
+}
 
-/*
-Thing 5) Head
-5 properties:
-    1) head circumference in cm (float)
-    2) number of eyes (int)
-    3) number of ears (int)
-    4) number of noses (int)
-    5) number of mounths (int)
-3 things it can do:
-    1) think
-    2) hear
-    3) smell
- */
+void PassengerPlane::provideMultimediaEntertainment(std::string mediaType)
+{
+    std::cout << "Now playing: " << mediaType;
+}
+
+void PassengerPlane::flyAboveTheClouds(std::string from, std::string to)
+{
+    std::cout << "This flight is from " << from << " to " << to;
+}
 
 struct Head
 {
-    // 5 properties:
-    // 1) head circumference in cm (float)
     float headCircumferenceInCm = 30.0f;
-    // 2) number of eyes (int)
     int numberOfEyes = 2;
-    // 3) number of ears (int)
     int numberOfEars = 2;
-    // 4) number of noses (int)
     int numberOfNoses = 1;
-    // 5) number of mounths (int)
     int numberOfMouths = 1;
 
-    // 3 things it can do:
-    // 1) think
     void think(std::string topic);
-    // 2) hear
     void hear(float sineWaveFrequency = 1.0f, float sineWaveAmplitude = 1.0f, float soundDecibels = 1.0f);
-    // 3) smell
     void smell(int numberOfAirMolecules = 10000);
 };
 
-/*
-Thing 6) Neck
-5 properties:
-    1) number lymph nodes (int)
-    2) number of thyroids (int)
-    3) number of vocal folds (int)
-    4) number of tracheae (int)
-    5) neck circumference in cm (float)
-3 things it can do:
-    1) support the head
-    2) deliver air from nose to lungs
-    3) deliver food from mouth to stomach
- */
+void Head::think(std::string topic)
+{
+    std::cout << "Thinking about " << topic << "now.";
+}
+
+void Head::hear(float sineWaveFrequency, float sineWaveAmplitude, float soundDecibels)
+{
+    std::cout << "Hearing a sound with a frequency of " << sineWaveFrequency << " hertz, an amplitude of " << sineWaveAmplitude << ", and " << soundDecibels << " db.";
+}
+
+void Head::smell(int numberOfAirMolecules)
+{
+    std::cout << "Breathing in " << numberOfAirMolecules << " of air molecules";
+}
 
 struct Neck
 {
-    // 5 properties:
-    // 1) number lymph nodes (int)
     int numberOfLymphNodes = 10;
-    // 2) number of thyroids (int)
     int numberOfThyroids = 1;
-    // 3) number of vocal folds (int)
     int numberOfVocalFolds = 1;
-    // 4) number of tracheae (int)
     int numberOfTracheae = 1;
-    // 5) neck circumference in cm (float)
     float neckCircumferenceInCm = 20.0f;
 
-    // 3 things it can do:
-    // 1) support the head
     void supportTheHead(double weightOfHeadInLb = 1.0000);
-    // 2) deliver air from nose to lungs
-    void deliverAirFromNoseToLungs(double volumeOfOxygen = 1.0000, double lengthOfTracheaeInMeter = 1.00);
-    // 3) deliver food from mouth to stomach   
+    void deliverAirFromNoseToLungs(double volumeOfOxygen = 1.0000, double lengthOfTracheaeInMeter = 1.00); 
     void deliverFoodFromMouthToStomach(double volumeOfFood= 1.0000, double lengthOfEsophagusInMeter = 1.00);
-};
+}; 
 
-/*
-Thing 7) body 
-5 properties:
-    1) number of hearts (int)
-    2) number of lungs (int)
-    3) number of stomachs (int)
-    4) number of kidneys (int)
-    5) waist circumference in cm (float)
-3 things it can do:
-    1) exchange gas
-    2) digest food
-    3) generate urine
- */
+void Neck::supportTheHead(double weightOfHeadInLb)
+{
+    std::cout << "Neck is supporting a head of " << weightOfHeadInLb << " lbs.";
+}
+
+void Neck::deliverAirFromNoseToLungs(double volumeOfOxygen, double lengthOfTracheaeInMeter)
+{
+    std::cout << "Neck is delivery a volume of " << volumeOfOxygen << " of oxygen via " << lengthOfTracheaeInMeter << " meter long of tracheae";
+}
+
+void Neck::deliverFoodFromMouthToStomach(double volumeOfFood, double lengthOfEsophagusInMeter)
+{
+    std::cout << "Neck is delivery a volume of " << volumeOfFood << " of food via " << lengthOfEsophagusInMeter << " meter long of esophagus";
+}
 
 struct Body
 {
-    // 5 properties:
-    // 1) number of hearts (int)
     int numberOfHearts = 1;
-    // 2) number of lungs (int)
     int numberOfLungs = 4;
-    // 3) number of stomachs (int)
     int numberOfStomachs = 1;
-    // 4) number of kidneys (int)
     int numberOfKidneys = 2;
-    // 5) waist circumference in cm (float)
     float waistCircumferenceInCm = 70.0f;
 
-    // 3 things it can do:
-    // 1) exchange gas
     void exchangeGas(double volumeOfOxygen = 1.0000, double volumeOfCarbonDioxide = 1.0000);
-    // 2) digest food
     void digestFood(double volumeOfFood = 1.000);
-    // 3) generate urine  
     void generateUrine(double amountOfWaterConsumedInLitter = 1.000);
 };
 
-/*
-Thing 8) arms
-5 properties:
-    1) arm length in cm (float)
-    2) number of muscles (int)
-    3) number of joints (int)
-    4) number of bones (int)
-    5) length of blood vessels in cm (float)
-3 things it can do:
-    1) lift things
-    2) rotate
-    3) stretch
- */
+void Body::exchangeGas(double volumeOfOxygen, double volumeOfCarbonDioxide)
+{
+    std::cout << "The lungs in your body exchange " << volumeOfOxygen << " volume of oxygen with " << volumeOfCarbonDioxide << " volume of carbon dioxide with one inhale and one exhale on average.";
+}
+
+void Body::digestFood(double volumeOfFood)
+{
+    std::cout << "The stomach in your body is digesting " << volumeOfFood << " volume of food.";
+}
+
+void Body::generateUrine(double amountOfWaterConsumedInLitter)
+{
+    std::cout << "The kidneys in your body generates " << amountOfWaterConsumedInLitter * 0.5 << " Litter of urine per Litter of water you consumed.";
+}
 
 struct Arm
 {
-    // 5 properties:
-    // 1) arm length in cm (float)
     float armLengthInCm = 50.000;
-    // 2) number of muscles (int)
     int numberOfMuscles = 100;
-    // 3) number of joints (int)
     int numberOfJoints = 50;
-    // 4) number of bones (int)
     int numberOfBones = 30;
-    // 5) length of blood vessels in cm (float)
     float lengthOfBloodVesselsInCm = 200.0f;
 
-    // 3 things it can do:
-    // 1) lift things
     void liftThings(float weightOfTheThingInLb = 10.0f, float sizeOfTheThingInCubicMeter = 1.0f);
-    // 2) rotate
     void rotate(float degreeOfRotation = 45);
-    // 3) stretch 
     void stretch(int numberOfMusclesMoved = 50);
 };
 
-/*
-Thing 9)
-5 properties: foot
-    1) foot length in cm (float)
-    2) number of toes (int)
-    3) number of ankles (int)
-    4) area of skins in square cm (float)
-    5) number of heels
-3 things it can do:
-    1) stretch 
-    2) kick
-    3) tiptoe
- */
+void Arm::liftThings(float weightOfTheThingInLb, float sizeOfTheThingInCubicMeter)
+{
+    std::cout << "The arm is lifting a thing that is in the size of " << sizeOfTheThingInCubicMeter << " in cubic meter and weighted " << weightOfTheThingInLb << " in lb."; 
+}
+
+void Arm::rotate(float degreeOfRotation)
+{
+    std::cout << "The arm has rotated by " << degreeOfRotation << " degree.";
+}
+
+void Arm::stretch(int numberOfMusclesMoved)
+{
+    std::cout << "Your arm moved " <<  numberOfMusclesMoved << " muscles to strech.";
+}
 
 struct Foot
 {
-    // 5 properties:
-    // 1) foot length in cm (float)
     float footLengthInCm = 15.000;
-    // 2) number of toes (int)
     int numberOfToes = 5;
-    // 3) number of ankles (int)
     int numberOfAnkles = 1;
-    // 4) area of skins in square cm (float)
     float areaOfSkinsInSquareCm = 100;
-    // 5) number of heels (int)
     int numberOfHeels = 1;
 
-    // 3 things it can do:
-    // 1) stretch
     void stretch(int numberOfMusclesMoved = 20);
-    // 2) kick
     void kick(float forceInNewton = 45);
-    // 3) tiptoe 
     void tiptoe(int numberOfMusclesMoved = 10);
 };
 
-/*
-Thing 10) Human
-5 properties:
-    1) Head
-    2) Neck
-    3) Body
-    4) Arm
-    5) Foot
-3 things it can do:
-    1) Speak
-    2) Run
-    3) Jump
- */
+void Foot::stretch(int numberOfMusclesMoved)
+{
+    std::cout << "Your foot moved " <<  numberOfMusclesMoved << " muscles to strech.";
+}
+
+void Foot::kick(float forceInNewton)
+{
+    std::cout << "You kicked with " <<  forceInNewton << " Newton of force.";
+}
+
+void Foot::tiptoe(int numberOfMusclesMoved)
+{
+    std::cout << "Your foot moved " <<  numberOfMusclesMoved << " muscles to tiptoe.";
+}
 
 struct Human
 {
-    // 5 properties:
-    // 1) Head
     Head head;
-    // 2) Neck
     Neck neck;
-    // 3) Body
     Body body;
-    // 4) Arm
     Arm leftArm;
     Arm rightArm;
-    // 5) Foot
     Foot leftFoot;
     Foot rightFoot;
 
-    // 3 things it can do:
-    // 1) Speak
     void speak(int numberOfWords = 1);
-    // 2) Run
     void run(double distanceInMeter = 1000.00);
-    // 3) jump
     void jump(int numberOfFootUsed = 2);
 };
+
+void Human::speak(int numberOfWords)
+{
+    std::cout << "You just said a sentence with " << numberOfWords << " number of words.";
+}
+
+void Human::run(double distanceInMeter)
+{
+    std::cout << "You just ran for " << distanceInMeter << " meters.";
+}
+
+void Human::jump(int numberOfFootUsed)
+{
+    if(numberOfFootUsed == 1)
+    {
+        std::cout << "You just jumped with 1 foot.";
+    }
+    else if(numberOfFootUsed == 2)
+    {
+        std::cout << "You just jumped with both feet.";    
+    }
+    else
+    {
+        std::cout << "You just jumped with " << numberOfFootUsed << " feet. You are not a normal human.";  
+    }
+}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
