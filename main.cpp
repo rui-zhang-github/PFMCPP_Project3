@@ -97,6 +97,27 @@ struct Hotel
     {
         std::cout << "Tonight's room rate is $" << roomRatePerNight << "." <<  std::endl;
     }
+    int reserveRooms(int numberOfRoomsNeeded)
+    {
+        std::cout << "Return the number of rooms reserved per function call." << std::endl;
+        int i = 0;
+        std::string word = " room";
+        while(numberOfBookedRooms < totalNumberOfGuestRooms && i < numberOfRoomsNeeded)
+        {
+            numberOfBookedRooms += 1;
+            i += 1;
+            word = (i <= 1) ? " room" : " rooms";
+            std::cout << "Reserved " << i << word << "." << std::endl;
+        }
+        if(numberOfBookedRooms >= totalNumberOfGuestRooms)
+        {
+            std::cout << "Fully booked now." << std::endl;
+        }
+        std::cout << "Reserved " << i << word << " in total." << std::endl;
+        std::string word2 = (totalNumberOfGuestRooms - numberOfBookedRooms <= 1) ? " room" : " rooms";
+        std::cout << totalNumberOfGuestRooms - numberOfBookedRooms << word2 << " available." << std::endl;
+        return i;
+    }
 
     struct FrontDesk
     {
@@ -104,8 +125,8 @@ struct Hotel
         int numberOfCounters = 1;
         int numberOfComputers { 1 };
         int numberOfPrinters;
-        int numberOfTelephones = 1;
-        int numberOfReceptionists { 1 };
+        int numberOfTelephones = 3;
+        int numberOfReceptionists { 2 };
 
         void checkCustomersIn(int numberOfCustomers = 1);
         void takeServiceRequests(std::string typeOfServices);
@@ -120,6 +141,26 @@ struct Hotel
             {
                 std::cout << "There is " << numberOfReceptionists << " receptionist at the front desk." <<std::endl;                
             }
+        }
+        bool coordinateCalls(unsigned int numberOfIncomingCalls)
+        {
+            std::cout << "Return boolean values if there are incoming calls to the front desk." << std::endl;
+            if(numberOfIncomingCalls > 0)
+            {
+                for(int i = 1; i <= numberOfReceptionists && i <= numberOfTelephones; ++i)
+                {
+                    std::string word = (i < 2) ? " call" : " calls";
+                    std::cout << "Taking " << i << word << "." << std::endl;
+                }
+                std::cout << "Please hold. All staff are taking calls from other guests." << std::endl;
+                return true;
+            }
+            else
+            {
+                std::cout << "No call taken." << std::endl;
+                return false;
+            }
+
         }                
     };
 };
@@ -211,22 +252,50 @@ struct Laptop
     {
         std::cout << "This is a " << sizeOfScreenInInch << "in screen."<< std::endl;
     }
+    void formatDisk(unsigned int percentageOfTotalDiskSpaceNeededToBeFreedUp)
+    {
+        std::cout << "This function prints out the disk space that has been freed up by formatting based on the user input as the function parameter." << std::endl;
+        if(percentageOfTotalDiskSpaceNeededToBeFreedUp <= 100)
+        {
+            int i = 0;
+            while(i <= percentageOfTotalDiskSpaceNeededToBeFreedUp / 100.0 * sizeOfDiskSpaceInGb)
+            {
+                std::cout << i << "GB disk space has been formatted and freed." << std::endl;
+                i += 1;
+            }
+        }
+        else
+        {
+            std::cout << "Disk formatting failed." << std::endl;
+        }
+    }
 
     struct Display
     {
         Display();
-        float electricPowerConsumedPerYearInWatts = 1.f;
+        double electricPowerConsumedPerYearInWatts = 1.0;
         int numberOfPixles { 1 };
         std::string colorProfile;
         float lengthInCm { 1.0f };
         float WidthInCm;
 
         void displayColor(std::string hexColorCode = "FF5733");
-        void adjustBrightness(float brightnessInPercentage = 50);
+        void adjustBrightness(int brightnessInPercentage = 50);
         void adjustClarity(float clarityInPercentage = 100);
         void printElectricPowerConsumedPerYearInWatts()
         {
             std::cout << "This display consumes " << electricPowerConsumedPerYearInWatts << "W electricity per year."<< std::endl;
+        }
+        double consumeElectricity(int numberOfYears, int brightnessInPercentage)
+        {
+            std::cout << "Print electricity consumed while it is on for X number of years." << std::endl;
+            double electricityConsumedInWatt = 0.00;
+            for(int i = 0; i <= numberOfYears; ++i)
+            {
+                electricityConsumedInWatt = i * electricPowerConsumedPerYearInWatts * brightnessInPercentage / 100;
+                std::cout << "The display has been on for " << i << " years and consumed " << electricityConsumedInWatt << "W of electricity." << std::endl;
+            }
+            return electricityConsumedInWatt;
         }
     };
 };
@@ -265,7 +334,7 @@ void Laptop::Display::displayColor(std::string hexColorCode)
     std::cout << "This is the color of hex code " << hexColorCode << std::endl;
 }
 
-void Laptop::Display::adjustBrightness(float brightnessInPercentage)
+void Laptop::Display::adjustBrightness(int brightnessInPercentage)
 {
     std::cout << "Current brightness is " << brightnessInPercentage << "%." << std::endl;
 }
@@ -297,6 +366,19 @@ struct DishWasher
     void printNumberOfWattsConsumedPerHour()
     {
         std::cout << "This dish washwer consumes " << numberOfWattsConsumedPerHour << "W of electricity per hour." << std::endl;
+    }
+    void washDishes (int startingCycle)
+    {
+        std::cout << "Print the on-going cycle number while washing dishes" << std::endl;
+        while(startingCycle <= numberOfCycles && startingCycle >= 1)
+        {
+            std::cout << "Current cycle: " << startingCycle << std::endl;
+            startingCycle += 1; 
+        }
+        if(startingCycle < 1 || startingCycle > numberOfCycles + 1)
+        {
+            std::cout << "Error. Please enter number 1 - " << numberOfCycles << "." << std::endl;
+        }
     }
 };
 
@@ -342,7 +424,7 @@ void DishWasher::makeNoiseWhenTurnedOn(bool isOn)
 struct PassengerPlane
 {
     PassengerPlane();
-    int numberOfSeats = 10;
+    int numberOfSeats = 20;
     int nubmerOfBathrooms { 2 };
     int numberOfDoors;
     double sizeOfThePlane { 100 };
@@ -354,6 +436,20 @@ struct PassengerPlane
     void printNumberOfSeats()
     {
         std::cout << "There are " << numberOfSeats << " seats on the plane." << std::endl;
+    }
+    int numberOfLoopsToUnloadAllPassengers(int numberOfDoorsOpened)
+    {
+        std::cout << "Print and return number of loops to unload all the passengers assuming flying at full capacity." << std::endl;
+        int numberOfLoops = 0;
+        for(int i = 0; i * numberOfDoorsOpened < numberOfSeats; ++i)
+        {
+            std::cout << "A total of " << i * numberOfDoorsOpened << " people can be unloaded in loop " << i << "." << std::endl;
+            numberOfLoops = i;
+        }
+        int lastLoop = (numberOfLoops * numberOfDoorsOpened < numberOfSeats) ? 1 : 0;
+        numberOfLoops = numberOfLoops + lastLoop;
+        std::cout << "The plane can be fully unloaded at full capacity at loop " << numberOfLoops << "." << std::endl;
+        return numberOfLoops;
     }
 };
 
@@ -400,6 +496,20 @@ struct Head
     {
         std::cout << "The circumference of this head is " << headCircumferenceInCm << "cm." << std::endl;
     }
+    void blinkOneEyeAtATime(int numberOfBlinksForEachEye)
+    {
+        std::cout << "Print the action of an eye when blink." << std::endl;
+        int i = 0;
+        while(i < numberOfBlinksForEachEye)
+        {
+            for(int e = 0; e < numberOfEyes; ++e)
+            {
+                std::cout << "open one eye." << std::endl;
+                std::cout << "close one eye." << std::endl;
+            }
+            ++i;
+        }
+    }
 };
 
 // Head::Head()
@@ -438,10 +548,23 @@ struct Neck
     {
         std::cout << "There are " << numberOfLymphNodes << " of lymph nodes in my neck" << std::endl;
     }
+    void yell(int numberOfSecondsYelling)
+    {
+        std::cout << "This function prints each second each vocal fold vibrates." << std::endl;
+        for(int i = 1; i <= numberOfSecondsYelling; ++i)
+        {
+            int v = 0;
+            while(v < numberOfVocalFolds)
+            {
+                ++v;
+                std::cout << "Vocal fold #" << v << " has been vibrating for " << i << " second(s)." << std::endl;
+            }
+        }
+    }
 };
 
 Neck::Neck() :
-numberOfVocalFolds(1),
+numberOfVocalFolds(2),
 neckCircumferenceInCm(20.0)
 {
     std::cout << "This is a neck." << std::endl;
@@ -470,7 +593,7 @@ struct Body
     {
         std::cout << "This is a body." << std::endl;
     }
-    int numberOfHearts = 1;
+    int numberOfHearts = 2;
     int numberOfLungs { 4 };
     int numberOfStomachs;
     int numberOfKidneys { 2 };
@@ -482,6 +605,19 @@ struct Body
     void printNumberOfHearts()
     {
         std::cout << "I have " << numberOfHearts << " heart in my body." << std::endl;
+    }
+    int totalHeartBeats(int numberOfSeconds, int heartRatePerSecond)
+    {
+        std::cout << "Print and return the total number of heart beats in a time period." << std::endl;
+        int i = 0;
+        int totalNumberOfHeartBeats = 0;
+        while(i < numberOfSeconds)
+        {
+            totalNumberOfHeartBeats = i * heartRatePerSecond * numberOfHearts;
+            std::cout << "There has been " << totalNumberOfHeartBeats << " heart beat(s) in the past " << i << " second(s)." << std::endl;
+            ++i;
+        }
+        return totalNumberOfHeartBeats;
     }
 };
 
@@ -520,6 +656,15 @@ struct Arm
     void printNumberOfMuscles()
     {
         std::cout << "There are " << numberOfMuscles << " muscles in my arm." << std::endl;
+    }
+    void punch(int numberOfTimes)
+    {
+        for(int i = 1; i <= numberOfTimes; ++i)
+        {
+            std::cout << "This function prints the rotation and stretch actions for each punch." << std::endl;
+            rotate(30.00f);
+            stretch(75);
+        }
     }
 };
 
@@ -565,6 +710,19 @@ struct Foot
     void printNumberOfAnkles()
     {
         std::cout << "This foot has " << numberOfAnkles << " ankle." << std::endl;
+    }
+    void bendToes(int numberOfTimesBend)
+    {
+        std::cout << "This function prints each time each toe bends." << std::endl;
+        int i = 1;
+        while(i <= numberOfTimesBend)
+        {
+            for(int t = 1; t <= numberOfToes; ++t)
+            {
+                std::cout << "Toe " << t << " had " << i << " bend(s)." << std::endl;
+            }
+            ++i;
+        }
     }
 };
 
@@ -647,6 +805,7 @@ void Human::jump(int numberOfFootUsed)
  */
 
 #include <iostream>
+#include <cmath>
 int main()
 {
     Example::main();
@@ -654,12 +813,16 @@ int main()
 
     std::cout << "UDT #1: Hotel" << std::endl;
     Hotel daysInn;
-    daysInn.storeLugages(2);
-    daysInn.hostCustomers(6);
+    int tLugages = daysInn.storeLugages(2);
+    std::cout << "Stored " << tLugages << " lugages." << std::endl;
+    int tCustomers = daysInn.hostCustomers(6);
+    std::cout << "Hosted " << tCustomers << " customers." << std::endl;
     daysInn.providLaundryServices(8);
     daysInn.numberOfCafes = 5;
     std::cout << "There are " << daysInn.numberOfCafes << " cafes in this hotel." << std::endl;
     daysInn.printRoomRatePerNight();
+    int roomsBooked = daysInn.reserveRooms(31);
+    std::cout << "Booked " << roomsBooked << " rooms." << std::endl;
     std::cout << std::endl;
 
     std::cout << "UDT #2: Front Desk within a Hotel" << std::endl;
@@ -670,6 +833,8 @@ int main()
     daysInnFrontDesk.numberOfPrinters = 8;
     std::cout << "There are " << daysInnFrontDesk.numberOfPrinters << " printers in this hotel." << std::endl;
     daysInnFrontDesk.printNumberOfReceptionists();
+    bool isCalling = daysInnFrontDesk.coordinateCalls(4);
+    std::cout << "Is the Front Desk Taking Phone Calls? " << (isCalling == true ? "Yes." : "No.") << std::endl;
     std::cout << std::endl;
 
     std::cout << "UDT #3: Laptop" << std::endl;
@@ -679,6 +844,7 @@ int main()
     macBookPro.storeData("main.cpp");
     std::cout << "The file displayed has " << numberOfColorCodes << " different hex colors." << std::endl;
     macBookPro.printSizeOfScreenInInch();
+    macBookPro.formatDisk(10);
     std::cout << std::endl; 
 
     std::cout << "UDT #4: Display of a Laptop" << std::endl;
@@ -689,6 +855,8 @@ int main()
     macBookProRetinaDisplay.numberOfPixles = 1000000000;
     std::cout << "The Laptop has display with " << macBookProRetinaDisplay.numberOfPixles << " pixles." << std::endl;
     macBookProRetinaDisplay.printElectricPowerConsumedPerYearInWatts(); 
+    double totalElectricityConsumed = macBookProRetinaDisplay.consumeElectricity(5, 80);
+    std::cout << "Consumed " << totalElectricityConsumed << " Watts of electricity." << std::endl;
     std::cout << std::endl;  
     
     std::cout << "UDT #5: Dish Washer" << std::endl;
@@ -696,9 +864,10 @@ int main()
     machineA.cleanDishes(20, 0.05);
     machineA.consumeElectricity(1.5, 0.5);
     machineA.makeNoiseWhenTurnedOn(false);
-    machineA.numberOfCycles = 3;
+    machineA.numberOfCycles = 7;
     std::cout << "The Laptop has " << machineA.numberOfCycles << " cleaning cycles." << std::endl; 
     machineA.printNumberOfWattsConsumedPerHour();
+    machineA.washDishes(3);
     std::cout << std::endl;
     
     std::cout << "UDT #6: Passenger Plane" << std::endl;
@@ -706,9 +875,11 @@ int main()
     boeing737.carryPassengers(300);
     boeing737.provideMultimediaEntertainment("Movies");
     boeing737.flyAboveTheClouds("New York", "San Francisco");
-    boeing737.numberOfSeats = 310;
+    boeing737.numberOfSeats = 31;
     std::cout << "This plane has " << boeing737.numberOfSeats << " seats." << std::endl;
-    boeing737.printNumberOfSeats(); 
+    boeing737.printNumberOfSeats();
+    int numberOfLoopsToFullyUnload = boeing737.numberOfLoopsToUnloadAllPassengers(6);
+    std::cout << "It will take " << numberOfLoopsToFullyUnload << " loops to fully unload all passengers from the plane." << std::endl;
     std::cout << std::endl;  
     
     std::cout << "UDT #7: Head" << std::endl;
@@ -719,6 +890,7 @@ int main()
     myHead.numberOfEyes = 3;
     std::cout << "There are " << myHead.numberOfEyes << " eyes on my head." << std::endl;
     myHead.printHeadCircumferenceInCm();
+    myHead.blinkOneEyeAtATime(2);
     std::cout << std::endl;  
 
     std::cout << "UDT #8: Neck" << std::endl;
@@ -729,6 +901,7 @@ int main()
     myNeck.neckCircumferenceInCm = 36.8;
     std::cout << "The circumference of my neck is " << myNeck.neckCircumferenceInCm << " cm." << std::endl; 
     myNeck.printNumberOfLymphNodes();
+    myNeck.yell(3);
     std::cout << std::endl;
 
     std::cout << "UDT #9: Body" << std::endl;
@@ -739,6 +912,7 @@ int main()
     myBody.waistCircumferenceInCm = 62.8;
     std::cout << "The circumference of my waist is " << myBody.waistCircumferenceInCm << " cm." << std::endl; 
     myBody.printNumberOfHearts();
+    myBody.totalHeartBeats(3, 2);
     std::cout << std::endl;
 
     std::cout << "UDT #10: Arm" << std::endl;
@@ -749,6 +923,7 @@ int main()
     myLeftArm.numberOfBones = 100;
     std::cout << "There are " << myLeftArm.numberOfBones << " bones in my arm." << std::endl;
     myLeftArm.printNumberOfMuscles();
+    myLeftArm.punch(2);
     std::cout << std::endl;
 
     std::cout << "UDT #11: Foot" << std::endl;
@@ -759,6 +934,7 @@ int main()
     myRightFoot.numberOfToes = 5;
     std::cout << "There are " << myRightFoot.numberOfToes << " on my one foot." << std::endl;
     myRightFoot.printNumberOfAnkles(); 
+    myRightFoot.bendToes(3);
     std::cout << std::endl;
 
     std::cout << "UDT #12: Human" << std::endl;
@@ -773,6 +949,11 @@ int main()
     myself.body.printNumberOfHearts();
     myself.leftFoot.printNumberOfAnkles();
     myself.rightArm.printNumberOfMuscles();
+    myself.head.blinkOneEyeAtATime(3);
+    myself.neck.yell(4);
+    myself.body.totalHeartBeats(4, 3);
+    myself.leftArm.punch(3);
+    myself.rightFoot.bendToes(2);
     std::cout << std::endl;
 
     std::cout << "good to go!" << std::endl;
