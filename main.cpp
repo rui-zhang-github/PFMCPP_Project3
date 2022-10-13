@@ -1,43 +1,76 @@
 /*
- Project 3 - Part 4 / 5
- video: Chapter 2 - Part 9
- Member initialization tasks
+ Project 3 - Part 5 / 5
+ video: Chapter 2 - Part 10
+ Scope and Lifetime tasks
  
- Create a branch named Part4
+Create a branch named Part5
+
+ video covered:
+    variable scope and lifetime relative to { }
+    while loops
+    for loops()
  
- 1) do this for each class in this project: 
-    initialize some of your member variables either in-class or in the Constructor member initializer list.
-    Show me that you understand how to use these language features.
+ tasks
+ 
+ 1) add some new member functions to EACH of your types. 
+ 
+ 2) inside these new member functions, use while() and for() loops to do something interesting 
+         a) example: have a loop that modifies a member variable of some object created outside the loop.
+         b) when that member variable reaches a certain threshold, return it mid-loop.
+         c) maybe use function parameters to control the starting value of that member variable or control the threshold
+         
+ 3) call those new member functions in main()
+ 
+ 4) use std::cout statements to print out information about what your loops did.
+    Your code should produce a lot of console output now.
     
- 2) make some of your member functions use those initialized member variables via std::cout statements.
+ 5) Remember to use pre-increment/decrement in your loops. 
+ You can learn why post-increment/decrement is not ideal here:
+ https://en.cppreference.com/w/cpp/language/operator_incdec 
  
- 3) click the [run] button.  Clear up any errors or warnings as best you can.
+ 6) click the [run] button.  Clear up any errors or warnings as best you can.
  if your code produces a -Wpadded warning, add '-Wno-padded' to the .replit file with the other compiler flags (-Weverything -Wno-missing-prototypes etc etc)
  */
 
 #include <iostream>
 namespace Example 
 {
-struct UDT  
+struct Bar 
+{ 
+    int num = 0; 
+    Bar(int n) : num(n) { } 
+};
+struct Foo
 {
-    int a; //a member variable that IS NOT initialized in-class
-    float b { 2.f }; //a member variable that IS initialized in-class
-    UDT() : a(0) { } // 'constructor-initializer-list' initializing the member that wasn't initialized in-class.
-    void printAandB()  //the member function
+    Bar scopeLifetimeFunc( int threshold, int startingVal ) //1), 2c) 
     {
-        std::cout << "UDT::printAandB() a:" << a << " b: " << b << std::endl;  //2) printing out something interesting
+        Bar bar(startingVal);                //2a)
+        while( bar.num < threshold )         //2a) 
+        { 
+            bar.num += 1;                    //2a)
+            std::cout << "  increasing bar.num: " << bar.num << std::endl; //4)
+            if( bar.num >= threshold )       //2b)
+                return bar;
+        }
+        
+        return Bar {-1}; //if your startingValue >= threshold, the while loop never runs
     }
 };
 
 int main()
 {
-    UDT foo; //instantiating a Foo in main()
-    foo.printAandB(); //calling a member function of the instance that was instantiated.
+    Foo foo;
+    auto bar = foo.scopeLifetimeFunc(3, 1);        //3) 
+    
+    std::cout << "bar.num: " << bar.num << std::endl;     //4) 
     return 0;
 }
 }
 
-//call Example::main()
+//call Example::main() in main()
+
+
+
 
 
 struct Hotel
