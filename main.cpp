@@ -42,48 +42,71 @@ int main()
 
 struct Hotel
 {
-    Hotel();
     int totalNumberOfGuestRooms = 30;
-    int numberOfBookedRooms = 0;
-    float roomRatePerNight = 123.0f;
+    int numberOfBookedRooms { 0 };
+    float roomRatePerNight;
     int numberOfCafes = 1;
-    int numberOfElevators = 2;
-    int totalNumberOfCustomersStayingTonight = 0;
+    int numberOfElevators { 2 };
+    int totalNumberOfCustomersStayingTonight;
     int totalNumberOfLugages = 0;
+
+    Hotel() : 
+    roomRatePerNight(123.0f),
+    totalNumberOfCustomersStayingTonight(0) 
+    {
+        std::cout << "created a hotel." << std::endl;
+    }
 
     int storeLugages(int numberOfLugages = 1); 
     int hostCustomers(int numberOfCustomers = 1); 
     void providLaundryServices(int numberOfClothes = 1);
+    void printRoomRatePerNight()
+    {
+        std::cout << "Tonight's room rate is $" << roomRatePerNight << "." <<  std::endl;
+    }
 
     struct FrontDesk
     {
         FrontDesk();
         int numberOfCounters = 1;
-        int numberOfComputers = 1;
-        int numberOfPrinters = 1;
+        int numberOfComputers { 1 };
+        int numberOfPrinters;
         int numberOfTelephones = 1;
-        int numberOfReceptionists = 1;
+        int numberOfReceptionists { 1 };
 
         void checkCustomersIn(int numberOfCustomers = 1);
         void takeServiceRequests(std::string typeOfServices);
-        void printBills(int numberOfBillsToPrint = 1);                
+        void printBills(int numberOfBillsToPrint = 1);
+        void printNumberOfReceptionists()
+        {
+            if(numberOfReceptionists > 1)
+            {
+                std::cout << "There are " << numberOfReceptionists << " receptionists at the front desk." <<std::endl;
+            }
+            else
+            {
+                std::cout << "There is " << numberOfReceptionists << " receptionist at the front desk." <<std::endl;                
+            }
+        }                
     };
 };
 
-Hotel::Hotel()
-{
-    std::cout << "created a hotel." << std::endl;
-}
+// Hotel::Hotel()
+// {
+//     std::cout << "created a hotel." << std::endl;
+// }
 
 int Hotel::storeLugages(int numberOfLugages)
 {
     totalNumberOfLugages += numberOfLugages;
+    std::cout << "After adding "  << numberOfLugages << " lugages, the hotel is storing a total of " << totalNumberOfLugages <<  " lugages."  << std::endl;
     return totalNumberOfLugages;
 }
 
 int Hotel::hostCustomers(int numberOfCustomers)
 {
     totalNumberOfCustomersStayingTonight += numberOfCustomers;
+    std::cout << "After checking in "  << numberOfCustomers << " new guest(s), the hotel now has a total number of " << totalNumberOfCustomersStayingTonight <<  " guest(s) staying." << std::endl;
     return totalNumberOfCustomersStayingTonight;
 }
 
@@ -99,7 +122,8 @@ void Hotel::providLaundryServices(int numberOfClothes)
     }
 }
 
-Hotel::FrontDesk::FrontDesk()
+Hotel::FrontDesk::FrontDesk() :
+numberOfPrinters(1)
 {
     std::cout << "Created a front desk within the hotel." << std::endl;
 }
@@ -118,7 +142,7 @@ void Hotel::FrontDesk::checkCustomersIn(int numberOfCustomers)
 
 void Hotel::FrontDesk::takeServiceRequests(std::string typeOfServices)
 {
-    std::cout << typeOfServices << " service request has been taken." << std::endl;
+    std::cout << typeOfServices << " service request has been taken." << std::endl; 
 }
 
 void Hotel::FrontDesk::printBills(int numberOfBillsToPrint)
@@ -135,36 +159,49 @@ void Hotel::FrontDesk::printBills(int numberOfBillsToPrint)
 
 struct Laptop
 {
-    Laptop();
+    Laptop() :
+    sizeOfScreenInInch(13.3f),
+    sizeOfDiskSpaceInGb(256)
+    {
+        std::cout << "Created a laptop." << std::endl;
+    }
     std::string typeOfCPU = "Quad-Core Intel Core i5";
-    int sizeOfRamInGb = 8;
-    float sizeOfScreenInInch = 13.3f;
+    int sizeOfRamInGb { 8 };
+    float sizeOfScreenInInch;
     std::string typeOfOperatingSystem = "Linux";
-    int sizeOfDiskSpaceInGb = 256;
+    int sizeOfDiskSpaceInGb;
 
     int displayImage(std::string fileName); 
     void playAudio(std::string fileName);
     void storeData(std::string fileName);
+    void printSizeOfScreenInInch()
+    {
+        std::cout << "This is a " << sizeOfScreenInInch << "in screen."<< std::endl;
+    }
 
     struct Display
     {
         Display();
         float electricPowerConsumedPerYearInWatts = 1.f;
-        int numberOfPixles = 1;
-        std::string colorProfile = "Adobe RGB";
-        float lengthInCm = 1.0f;
-        float WidthInCm = 1.0f;
+        int numberOfPixles { 1 };
+        std::string colorProfile;
+        float lengthInCm { 1.0f };
+        float WidthInCm;
 
         void displayColor(std::string hexColorCode = "FF5733");
         void adjustBrightness(float brightnessInPercentage = 50);
         void adjustClarity(float clarityInPercentage = 100);
+        void printElectricPowerConsumedPerYearInWatts()
+        {
+            std::cout << "This display consumes " << electricPowerConsumedPerYearInWatts << "W electricity per year."<< std::endl;
+        }
     };
 };
 
-Laptop::Laptop()
-{
-    std::cout << "Created a laptop." << std::endl;
-}
+// Laptop::Laptop()
+// {
+//     std::cout << "Created a laptop." << std::endl;
+// }
 
 int Laptop::displayImage(std::string fileName)
 {
@@ -183,7 +220,9 @@ void Laptop::storeData(std::string fileName)
     std::cout << fileName << " has been stored the hard drive." << std::endl;
 }
 
-Laptop::Display::Display()
+Laptop::Display::Display() :
+colorProfile("Adobe RGB"),
+WidthInCm(1.0f)
 {
     std::cout << "Created a display of a laptop." << std::endl;
 }
@@ -205,22 +244,33 @@ void Laptop::Display::adjustClarity(float clarityInPercentage)
 
 struct DishWasher
 {
-    DishWasher();
+
     double cabinVolumeInCubicMeter = 1.0000;
-    int numberOfCycles = 5;
-    double numberOfWattsConsumedPerHour = 1.0000;
-    float sizeOfMachineInMeter = 1.0f;
-    int numberOfRacks = 2;
+    int numberOfCycles { 5 };
+    double numberOfWattsConsumedPerHour;
+    float sizeOfMachineInMeter { 1.0f };
+    int numberOfRacks;
+
+    DishWasher() : 
+    numberOfWattsConsumedPerHour(1.0000),
+    numberOfRacks(2)
+    {
+        std::cout << "created a dish washer" << std::endl;
+    }
 
     void cleanDishes(int numberOfDishes, double amountOfDetergentInLitter);
     void consumeElectricity(double numberOfHoursWashwerHasBeenOn, double numberOfWattsConsumedPerHour);
     void makeNoiseWhenTurnedOn(bool isOn = true);
+    void printNumberOfWattsConsumedPerHour()
+    {
+        std::cout << "This dish washwer consumes " << numberOfWattsConsumedPerHour << "W of electricity per hour." << std::endl;
+    }
 };
 
-DishWasher::DishWasher()
-{
-    std::cout << "created a dish washer" << std::endl;
-}
+// DishWasher::DishWasher()
+// {
+//     std::cout << "created a dish washer" << std::endl;
+// }
 
 void DishWasher::cleanDishes(int numberOfDishes, double amountOfDetergentInLitter)
 {
@@ -260,17 +310,23 @@ struct PassengerPlane
 {
     PassengerPlane();
     int numberOfSeats = 10;
-    int nubmerOfBathrooms = 2;
-    int numberOfDoors = 6;
-    double sizeOfThePlane = 100;
-    int numberOfEngines = 4;
+    int nubmerOfBathrooms { 2 };
+    int numberOfDoors;
+    double sizeOfThePlane { 100 };
+    int numberOfEngines;
 
     void carryPassengers(int numberOfPassengers);
     void provideMultimediaEntertainment(std::string mediaType);
     void flyAboveTheClouds(std::string from, std::string to);
+    void printNumberOfSeats()
+    {
+        std::cout << "There are " << numberOfSeats << " seats on the plane." << std::endl;
+    }
 };
 
-PassengerPlane::PassengerPlane()
+PassengerPlane::PassengerPlane() :
+numberOfDoors(6),
+numberOfEngines(4)
 {
     std::cout << "created a passenger plane." << std::endl;
 }
@@ -292,22 +348,31 @@ void PassengerPlane::flyAboveTheClouds(std::string from, std::string to)
 
 struct Head
 {
-    Head();
+    Head() :
+    numberOfEars(2),
+    numberOfMouths(1)
+    {
+        std::cout << "This is a head." << std::endl;
+    }
     float headCircumferenceInCm = 30.0f;
-    int numberOfEyes = 2;
-    int numberOfEars = 2;
-    int numberOfNoses = 1;
-    int numberOfMouths = 1;
+    int numberOfEyes { 2 };
+    int numberOfEars;
+    int numberOfNoses { 1 };
+    int numberOfMouths;
 
     void think(std::string topic);
     void hear(float sineWaveFrequency = 1.0f, float sineWaveAmplitude = 1.0f, float soundDecibels = 1.0f);
     void smell(int numberOfAirMolecules = 10000);
+    void printHeadCircumferenceInCm()
+    {
+        std::cout << "The circumference of this head is " << headCircumferenceInCm << "cm." << std::endl;
+    }
 };
 
-Head::Head()
-{
-    std::cout << "This is a head." << std::endl;
-}
+// Head::Head()
+// {
+//     std::cout << "This is a head." << std::endl;
+// }
 
 void Head::think(std::string topic)
 {
@@ -328,17 +393,23 @@ struct Neck
 {
     Neck();
     int numberOfLymphNodes = 10;
-    int numberOfThyroids = 1;
-    int numberOfVocalFolds = 1;
-    int numberOfTracheae = 1;
-    double neckCircumferenceInCm = 20.0;
+    int numberOfThyroids { 1 };
+    int numberOfVocalFolds;
+    int numberOfTracheae { 1 };
+    double neckCircumferenceInCm;
 
     void supportTheHead(double weightOfHeadInLb = 1.0000);
-    void deliverAirFromNoseToLungs(double volumeOfOxygen = 1.0000, double lengthOfTracheaeInMeter = 1.00); 
+    void deliverAirFromNoseToLungs(double volumeOfOxygen = 1.0000, double lengthOfTracheaeInMeter = 1.00);
     void deliverFoodFromMouthToStomach(double volumeOfFood= 1.0000, double lengthOfEsophagusInMeter = 1.00);
+    void printNumberOfLymphNodes()
+    {
+        std::cout << "There are " << numberOfLymphNodes << " of lymph nodes in my neck" << std::endl;
+    }
 };
 
-Neck::Neck()
+Neck::Neck() :
+numberOfVocalFolds(1),
+neckCircumferenceInCm(20.0)
 {
     std::cout << "This is a neck." << std::endl;
 }
@@ -360,22 +431,31 @@ void Neck::deliverFoodFromMouthToStomach(double volumeOfFood, double lengthOfEso
 
 struct Body
 {
-    Body();
+    Body() :
+    numberOfStomachs(1),
+    waistCircumferenceInCm(20.0)
+    {
+        std::cout << "This is a body." << std::endl;
+    }
     int numberOfHearts = 1;
-    int numberOfLungs = 4;
-    int numberOfStomachs = 1;
-    int numberOfKidneys = 2;
-    double waistCircumferenceInCm = 20.0;
+    int numberOfLungs { 4 };
+    int numberOfStomachs;
+    int numberOfKidneys { 2 };
+    double waistCircumferenceInCm;
 
     void exchangeGas(double volumeOfOxygen = 1.0000, double volumeOfCarbonDioxide = 1.0000);
     void digestFood(double volumeOfFood = 1.000);
     void generateUrine(double amountOfWaterConsumedInLitter = 1.000);
+    void printNumberOfHearts()
+    {
+        std::cout << "I have " << numberOfHearts << " heart in my body." << std::endl;
+    }
 };
 
-Body::Body()
-{
-    std::cout << "This is a body." << std::endl;
-}
+// Body::Body()
+// {
+//     std::cout << "This is a body." << std::endl;
+// }
 
 void Body::exchangeGas(double volumeOfOxygen, double volumeOfCarbonDioxide)
 {
@@ -396,17 +476,23 @@ struct Arm
 {
     Arm();
     float armLengthInCm = 50.000;
-    int numberOfMuscles = 100;
-    int numberOfJoints = 50;
-    int numberOfBones = 30;
-    float lengthOfBloodVesselsInCm = 200.0f;
+    int numberOfMuscles {100};
+    int numberOfJoints;
+    int numberOfBones {30};
+    float lengthOfBloodVesselsInCm;
 
     void liftThings(float weightOfTheThingInLb = 10.00f, float sizeOfTheThingInCubicMeter = 1.00f);
     void rotate(float degreeOfRotation = 45.00f);
     void stretch(int numberOfMusclesMoved = 50);
+    void printNumberOfMuscles()
+    {
+        std::cout << "There are " << numberOfMuscles << " muscles in my arm." << std::endl;
+    }
 };
 
-Arm::Arm()
+Arm::Arm() :
+numberOfJoints(50),
+lengthOfBloodVesselsInCm(200.0f)
 {
     std::cout << "This is an arm." << std::endl;
 }
@@ -428,22 +514,31 @@ void Arm::stretch(int numberOfMusclesMoved)
 
 struct Foot
 {
-    Foot();
+    Foot() : 
+    numberOfAnkles(1),
+    numberOfHeels(1)
+    {
+        std::cout << "This is a foot." << std::endl;
+    }
     float footLengthInCm = 15.000;
-    int numberOfToes = 5;
-    int numberOfAnkles = 1;
-    float areaOfSkinsInSquareCm = 100;
-    int numberOfHeels = 1;
+    int numberOfToes { 5 };
+    int numberOfAnkles;
+    float areaOfSkinsInSquareCm { 100 };
+    int numberOfHeels;
 
     void stretch(int numberOfMusclesMoved = 20);
     void kick(float forceInNewton = 45.f);
     void tiptoe(int numberOfMusclesMoved = 10);
+    void printNumberOfAnkles()
+    {
+        std::cout << "This foot has " << numberOfAnkles << " ankle." << std::endl;
+    }
 };
 
-Foot::Foot()
-{
-    std::cout << "This is a foot." << std::endl;
-}
+// Foot::Foot()
+// {
+//     std::cout << "This is a foot." << std::endl;
+// }
 
 void Foot::stretch(int numberOfMusclesMoved)
 {
@@ -509,15 +604,12 @@ void Human::jump(int numberOfFootUsed)
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
-
  Commit your changes by clicking on the Source Control panel on the left, entering a message, and click [Commit and push].
  
  If you didn't already: 
     Make a pull request after you make your first commit
     pin the pull request link and this repl.it link to our DM thread in a single message.
-
  send me a DM to review your pull request when the project is ready for review.
-
  Wait for my code review.
  */
 
@@ -534,6 +626,7 @@ int main()
     daysInn.providLaundryServices(8);
     daysInn.numberOfCafes = 5;
     std::cout << "There are " << daysInn.numberOfCafes << " cafes in this hotel." << std::endl;
+    daysInn.printRoomRatePerNight();
     std::cout << std::endl;
 
     std::cout << "UDT #2: Front Desk within a Hotel" << std::endl;
@@ -542,7 +635,8 @@ int main()
     daysInnFrontDesk.takeServiceRequests("Spa");
     daysInnFrontDesk.printBills(6);
     daysInnFrontDesk.numberOfPrinters = 8;
-    std::cout << "There are " << daysInnFrontDesk.numberOfPrinters << " printers in this hotel." << std::endl; 
+    std::cout << "There are " << daysInnFrontDesk.numberOfPrinters << " printers in this hotel." << std::endl;
+    daysInnFrontDesk.printNumberOfReceptionists();
     std::cout << std::endl;
 
     std::cout << "UDT #3: Laptop" << std::endl;
@@ -550,7 +644,8 @@ int main()
     int numberOfColorCodes = macBookPro.displayImage("juce.jpg");
     macBookPro.playAudio("Suspended Animation.mp3");
     macBookPro.storeData("main.cpp");
-    std::cout << "The file displayed has " << numberOfColorCodes << " different hex colors." << std::endl; 
+    std::cout << "The file displayed has " << numberOfColorCodes << " different hex colors." << std::endl;
+    macBookPro.printSizeOfScreenInInch();
     std::cout << std::endl; 
 
     std::cout << "UDT #4: Display of a Laptop" << std::endl;
@@ -559,7 +654,8 @@ int main()
     macBookProRetinaDisplay.adjustBrightness(70);
     macBookProRetinaDisplay.adjustClarity(50);
     macBookProRetinaDisplay.numberOfPixles = 1000000000;
-    std::cout << "The Laptop has display with " << macBookProRetinaDisplay.numberOfPixles << " pixles." << std::endl; 
+    std::cout << "The Laptop has display with " << macBookProRetinaDisplay.numberOfPixles << " pixles." << std::endl;
+    macBookProRetinaDisplay.printElectricPowerConsumedPerYearInWatts(); 
     std::cout << std::endl;  
     
     std::cout << "UDT #5: Dish Washer" << std::endl;
@@ -569,6 +665,7 @@ int main()
     machineA.makeNoiseWhenTurnedOn(false);
     machineA.numberOfCycles = 3;
     std::cout << "The Laptop has " << machineA.numberOfCycles << " cleaning cycles." << std::endl; 
+    machineA.printNumberOfWattsConsumedPerHour();
     std::cout << std::endl;
     
     std::cout << "UDT #6: Passenger Plane" << std::endl;
@@ -577,7 +674,8 @@ int main()
     boeing737.provideMultimediaEntertainment("Movies");
     boeing737.flyAboveTheClouds("New York", "San Francisco");
     boeing737.numberOfSeats = 310;
-    std::cout << "This plane has " << boeing737.numberOfSeats << " seats." << std::endl; 
+    std::cout << "This plane has " << boeing737.numberOfSeats << " seats." << std::endl;
+    boeing737.printNumberOfSeats(); 
     std::cout << std::endl;  
     
     std::cout << "UDT #7: Head" << std::endl;
@@ -586,7 +684,8 @@ int main()
     myHead.hear(3.5, 1.0, 10.5);
     myHead.smell(100000);
     myHead.numberOfEyes = 3;
-    std::cout << "There are " << myHead.numberOfEyes << " on my head." << std::endl; 
+    std::cout << "There are " << myHead.numberOfEyes << " eyes on my head." << std::endl;
+    myHead.printHeadCircumferenceInCm();
     std::cout << std::endl;  
 
     std::cout << "UDT #8: Neck" << std::endl;
@@ -596,6 +695,7 @@ int main()
     myNeck.deliverAirFromNoseToLungs(2, 1.68);
     myNeck.neckCircumferenceInCm = 36.8;
     std::cout << "The circumference of my neck is " << myNeck.neckCircumferenceInCm << " cm." << std::endl; 
+    myNeck.printNumberOfLymphNodes();
     std::cout << std::endl;
 
     std::cout << "UDT #9: Body" << std::endl;
@@ -605,6 +705,7 @@ int main()
     myBody.generateUrine(1.0);
     myBody.waistCircumferenceInCm = 62.8;
     std::cout << "The circumference of my waist is " << myBody.waistCircumferenceInCm << " cm." << std::endl; 
+    myBody.printNumberOfHearts();
     std::cout << std::endl;
 
     std::cout << "UDT #10: Arm" << std::endl;
@@ -613,7 +714,8 @@ int main()
     myLeftArm.rotate(80);
     myLeftArm.stretch(100);
     myLeftArm.numberOfBones = 100;
-    std::cout << "There are " << myLeftArm.numberOfBones << " bones in my arm." << std::endl; 
+    std::cout << "There are " << myLeftArm.numberOfBones << " bones in my arm." << std::endl;
+    myLeftArm.printNumberOfMuscles();
     std::cout << std::endl;
 
     std::cout << "UDT #11: Foot" << std::endl;
@@ -622,7 +724,8 @@ int main()
     myRightFoot.kick(66);
     myRightFoot.tiptoe(62);
     myRightFoot.numberOfToes = 5;
-    std::cout << "There are " << myRightFoot.numberOfToes << " on my one foot." << std::endl; 
+    std::cout << "There are " << myRightFoot.numberOfToes << " on my one foot." << std::endl;
+    myRightFoot.printNumberOfAnkles(); 
     std::cout << std::endl;
 
     std::cout << "UDT #12: Human" << std::endl;
@@ -631,7 +734,12 @@ int main()
     myself.run(66.88);
     myself.jump(1);
     myself.body.numberOfLungs = 6;
-    std::cout << "I have " << myself.body.numberOfLungs << " lungs." << std::endl; 
+    std::cout << "I have " << myself.body.numberOfLungs << " lungs." << std::endl;
+    myself.head.printHeadCircumferenceInCm();
+    myself.neck.printNumberOfLymphNodes();
+    myself.body.printNumberOfHearts();
+    myself.leftFoot.printNumberOfAnkles();
+    myself.rightArm.printNumberOfMuscles();
     std::cout << std::endl;
 
     std::cout << "good to go!" << std::endl;
